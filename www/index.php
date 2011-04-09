@@ -14,6 +14,7 @@ echo $loginOn;
 //to connect to db through server
 include 'mainConnect.php';
 */
+echo "step0 tagged project0";
 ?>
 
 <html>
