@@ -9,12 +9,12 @@ USE `project0` ;
 -- Table `project0`.`users`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `project0`.`users` (
-  `id` INT NOT NULL ,
+  `userid` INT NOT NULL ,
   `username` VARCHAR(45) NULL ,
   `password` VARCHAR(45) NULL ,
   `email` VARCHAR(45) NULL ,
   `rank` INT NULL ,
-  PRIMARY KEY (`id`) )
+  PRIMARY KEY (`userid`) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_turkish_ci;
@@ -24,16 +24,16 @@ COLLATE = utf8_turkish_ci;
 -- Table `project0`.`posts`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `project0`.`posts` (
-  `id` INT NOT NULL ,
+  `postid` INT NOT NULL ,
   `heading` TEXT NULL ,
   `text` TEXT NULL ,
   `tag` TEXT NULL ,
   `userId` INT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `id` (`userId` ASC) ,
-  CONSTRAINT `id`
+  PRIMARY KEY (`postid`) ,
+  INDEX `userid` (`userId` ASC) ,
+  CONSTRAINT `userid`
     FOREIGN KEY (`userId` )
-    REFERENCES `project0`.`users` (`id` )
+    REFERENCES `project0`.`users` (`userid` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = MyISAM
@@ -51,16 +51,16 @@ CREATE  TABLE IF NOT EXISTS `project0`.`comments` (
   `postId` INT NULL ,
   `commentId` INT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `id` (`userId` ASC) ,
-  INDEX `id` (`id` ASC) ,
-  CONSTRAINT `id`
+  INDEX `userid` (`userId` ASC) ,
+  INDEX `postid` (`postId` ASC) ,
+  CONSTRAINT `userid`
     FOREIGN KEY (`userId` )
-    REFERENCES `project0`.`users` (`id` )
+    REFERENCES `project0`.`users` (`userid` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `id`
-    FOREIGN KEY (`id` )
-    REFERENCES `project0`.`posts` (`id` )
+  CONSTRAINT `postid`
+    FOREIGN KEY (`postId` )
+    REFERENCES `project0`.`posts` (`postid` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = MyISAM
